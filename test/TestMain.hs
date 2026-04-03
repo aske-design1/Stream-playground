@@ -2,6 +2,7 @@ module Main where
 
 import Test.HUnit
 import StreamTests.VerdictTest ( verdictTests )
+import StreamTests.RulesTest ( rulesTest )
 import System.IO ( stdout )
 import System.Exit (exitSuccess, exitFailure)
 
@@ -9,7 +10,8 @@ import System.Exit (exitSuccess, exitFailure)
 allTests :: Test
 allTests = TestList 
     [ 
-        TestLabel "Verdict Logic" verdictTests
+        TestLabel "Verdict Logic" verdictTests,
+        TestLabel "Rules Logic" rulesTest
     ]
 
 

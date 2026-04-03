@@ -40,6 +40,16 @@
   (major1) == 0 && (major2) <  6 || \
   (major1) == 0 && (major2) == 6 && (minor) <= 7)
 #endif /* MIN_VERSION_containers */
+/* package stream-logic-haskell-0.1.0.0 */
+#ifndef VERSION_stream_logic_haskell
+#define VERSION_stream_logic_haskell "0.1.0.0"
+#endif /* VERSION_stream_logic_haskell */
+#ifndef MIN_VERSION_stream_logic_haskell
+#define MIN_VERSION_stream_logic_haskell(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  1 || \
+  (major1) == 0 && (major2) == 1 && (minor) <= 0)
+#endif /* MIN_VERSION_stream_logic_haskell */
 
 /* tool gcc-14.0.6 */
 #ifndef TOOL_VERSION_gcc

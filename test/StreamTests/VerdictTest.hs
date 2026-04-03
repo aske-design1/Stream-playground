@@ -5,25 +5,30 @@ import Test.HUnit
 
 
 --- Conjunction, Disjunction
-testConjunction = TestCase $ do
+testConjunction = TestCase $
     let t = TTrue
-    let f = FFalse
-    let d = Undecided
-    assertEqual "Should be True" (vConjunction [t, t, t, t, t, t, t, t, t, t, t]) t
-    assertEqual "Should be False" (vConjunction [t, t, t, f, t, t, t, t, t, t, t]) f
-    assertEqual "Should be Undecided" (vConjunction [t, t, t, t, t, t, d, t, t, t, t]) d
-    assertEqual "Should be False" (vConjunction [t, t, f, t, t, t, d, t, t, t, t]) f
+        f = FFalse
+        d = Undecided
+
+        tValues = [t | _ <- [0..10]]
+    in 
+        assertEqual "Should be True" (vConjunction tValues) t >>
+        assertEqual "Should be False" (vConjunction (f:tValues)) f >>
+        assertEqual "Should be Undecided" (vConjunction (d:tValues)) d >>
+        assertEqual "Should be False" (vConjunction (d:f:tValues)) f
 
 
-testDisjunction = TestCase $ do
+testDisjunction = TestCase $ 
     let t = TTrue
-    let f = FFalse
-    let d = Undecided
+        f = FFalse
+        d = Undecided
 
-    assertEqual "Should be False" (vDisjunction [f, f, f, f, f, f, f, f, f, f]) f
-    assertEqual "Should be True" (vDisjunction [f, f, t, f, f, f, f, f, f, f]) t
-    assertEqual "Should be Undecided" (vDisjunction [f, f, f, d, f, f, f, f, f, f]) d
-    assertEqual "Should be True" (vDisjunction [f, f, f, t, f, d, f, f, f, f]) t
+        fValues = [f | _ <- [0..10]]
+    in
+        assertEqual "Should be False" (vDisjunction fValues) f >>
+        assertEqual "Should be True" (vDisjunction (t:fValues)) t >>
+        assertEqual "Should be Undecided" (vDisjunction (d:fValues)) d >>
+        assertEqual "Should be True" (vDisjunction (d:t:fValues)) t
 
 verdictTests :: Test
 verdictTests = TestList 
